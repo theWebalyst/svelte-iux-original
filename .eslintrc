@@ -1,0 +1,15 @@
+extends:
+  - '@rixo/svelte'
+
+overrides:
+  # - files: ["**/*.svench", "**/*.svx"]
+  - files: ["**/*.svench"]
+    processor: svelte3/svelte3
+  - files: ["rollup.config.*"]
+    env:
+      node: true
+
+# settings:
+#   svelte3/enabled: true
+#   svelte3/ignore-warnings: false
+#   svelte3/lint-template: false

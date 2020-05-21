@@ -1,0 +1,23 @@
+<script>
+  import { View } from 'svench'
+  import Child from './Child.svelte'
+</script>
+
+<View name="default">
+  <Child />
+</View>
+
+<View name="other">
+  <Child name="other" />
+</View>
+
+<View name="yet another">
+  <h3>You can put anything you want in there!</h3>
+  <Child name="yes, another!" />
+</View>
+
+<View name="View 5">
+  <h3>Ah, ah!</h3>
+</View>
+
+<View>He stole my name!</View>
