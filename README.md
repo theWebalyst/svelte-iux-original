@@ -82,22 +82,10 @@ useful for subsets of a complex application. This doesn't work well in
 applications with multiple features which are intended to be used in
 combination, which is an example of the extra yard that iUX is going for.
 
-## Techniques:
-Some embrionic ideas for techniques that I think will help support the aims of iUX:
-
-- Use transitions when expanding or contracting, revealing or hiding, which
-minimise disruption to the rest of the UI, and so to the user's mental
-model of the system. For example, by not re-arranging existing controls or areas except for specific purposes, see next.
-
-- Rearranging is necessary at certain points in a dynamic, unfolding UI, but it can also be useful. For example as a signal that a new stage in the story is being revealed rather then a step made within the current stage. It may be a signal of completion, and for a well earned pause with an implied pat on the back. And still a rearrange must be done with minimum disruption to the status quo. There's a whiff of gamification here, but for now I don't plan to use that approach overtly because iUX philosophy is to enable choice rather than impose a direction.
-
-- Provide subtle, consistent visual clues which reflect the stages, such as
-shades or boundaries separating areas of incremental change, rather than
-simply adding to a homogenous controls area.
-
-I welcome discussion and comment on any aspect of iUX, so feel free to open an issue for that, or to ask a question etc.
-
-As if by magic I've been introduced to the term "progressive disclosure" and a quick search reveals a few examples (below). 
+#### Progressive Disclosure
+As if by magic after sharing the first version of this vision, someone kindly
+introduced me to the term "progressive disclosure" and a quick search reveals a
+few examples (below). 
 
 - Mega Menus
 - Overlays and Popovers
@@ -129,6 +117,21 @@ The issue though is not with the technology (progressive disclosure or frictionl
 Sources for the "progressive disclosure" techniques listed above:
 - *Use Progressive Disclosure to Simplify Complexity*, by Jeff Dance ([May 2017](https://www.freshconsulting.com/uiux-principle-51-progressive-disclosure-hides-complexity/))
 - *The art of progressive disclosure in web design,* by Waldo Broodryk ([August, 2016](https://webflow.com/blog/the-art-of-progressive-disclosure-in-web-design))
+
+## iUX Techniques
+Some embrionic ideas for techniques that I think will help support the aims of iUX:
+
+- Use transitions when expanding or contracting, revealing or hiding, which
+minimise disruption to the rest of the UI, and so to the user's mental
+model of the system. For example, by not re-arranging existing controls or areas except for specific purposes, see next.
+
+- Rearranging is necessary at certain points in a dynamic, unfolding UI, but it can also be useful. For example as a signal that a new stage in the story is being revealed rather then a step made within the current stage. It may be a signal of completion, and for a well earned pause with an implied pat on the back. And still a rearrange must be done with minimum disruption to the status quo. There's a whiff of gamification here, but for now I don't plan to use that approach overtly because iUX philosophy is to enable choice rather than impose a direction.
+
+- Provide subtle, consistent visual clues which reflect the stages, such as
+shades or boundaries separating areas of incremental change, rather than
+simply adding to a homogenous controls area.
+
+I welcome discussion and comment on any aspect of iUX, so feel free to open an issue for that, or to ask a question etc.
 
 ## Using Svench
 
