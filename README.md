@@ -47,6 +47,65 @@ at once in a user interface they know very well.
 
 Trying to cater for the novice and expert is particularly ambitious as if the former wasn't enough. So to make life a little easier the focus will be on helping the novice, while keeping catering for the expert in mind as an important longer term goal.
 
+## iUX Component TODO List
+This is the first take on what iUX components may be needed and how they can fit together:
+
+- [ ] **IUXContainer** - holds a sequence of major stages in application workflow with some control over how the subcomponents are laid out
+
+- [ ] **IUXTabContainer** - holds a sequence of high level, distinct stages
+
+- [ ] **IUXRevealContainer** - to sequence or manage complexity of subsets of UI within a higher level stage
+
+- [ ] **IUXRevealArea** - hols a small set of related HTML or general Svelte UI controls
+
+## iUX Component Summary
+In the hierarchy of application structure and workflow we have the following iUX components. 
+
+- IUXContainer
+  - IUXTabContainer
+    - IUXRevealContainer
+      - IUXRevealArea
+
+In this preliminary design, other HTML and Svelte UI components will be children of the **IUXRevealArea**. 
+
+The purpose of each of these compnents:
+
+- **IUXContainer** - holds a sequence of major stages in application workflow with some control over how the subcomponents are laid out
+
+- **IUXTabContainer** - holds a sequence of high level, distinct stages
+
+- **IUXRevealContainer** - to sequence or manage complexity of subsets of UI within a higher level stage
+
+- **IUXRevealArea** - hols a small set of related HTML or general Svelte UI controls
+
+Restrictions on which iUX components can be contained by which other iUX components are not laid down at this stage. The intention is to support a tree or graph like structure which can be adapted to a variety of application styles and workflows. So there will be a need to have 'higher' level elements contained by 'lower' level components rather than make following the above hierarchy mandatory.
+
+### IUXContainer
+**iuxContainer** is a container for other iUX controls and can be used to create groups and a hierarchy, which provides the high level structure and flows of the user experience (UX). Provides control over how groups of control, probably always of the same type, are arranged within the container.
+
+### IUXRevealContainer
+**IUXRevealContainer** is a simple control which can reveal UI controls in an 
+area that was previously blank. Multiple regions can be managed within the overall area managed by this control, intended to be shown or hidden in one or more patterns. Example patterns: 
+- **telescope**, where each reveal extends by showing the next region in the sequence, or hides by reversing the sequence
+- **concertina**, where only one of the areas in the sequence is visible at a time, and the user can easily move forward and backward through the sequence. An option will be to indicate the individual sequences and enable the user to click to reveal one without having to visit the intermediate areas in the sequence.
+
+A design choice left to the developer will be whether the changes should affect the size of the area used by the **IUXRevealContainer**. It may be tempting to try too many regions or allow too much disruption when using this control, and defaults which have to be consciously overriden by the developer can be used to discourage that once some sensible guidelines have been established. With this in mind, the default will be for an area which does not change size as regions within it are shown or hidden. The default will be to minimise disruption to the user's visual model of the UI.
+
+Options may allow for differenet styles of visual clues and features such as area boundaries and navigation controls, according to the degree of structure to be emphasised, navigation features made available and so on.
+
+Options may select different behavious, such as to operate horizontally or vertically, or in different directions such as left to right, or right to left etc. Or to follow different paths as in left to right + down + left to right, or left to right + down + right to left.
+
+### IUXRevealArea
+**IUXRevealArea** will I imagine will be necessary to define the areas being managed by an **IUXRevealContainer** component.
+
+### IUXTabContainer
+**IUXTabContainer** is a component for managing multiple areas of UI, such as a set of **IUXRevealContainers**. 
+
+It is similar to a traditional tabbed UI, but instead of *switching* between
+tabs, it *slides* each tabbed area in or out to reveal or hide its UI. This is similar to the resizing mode of **IUXRevealContainer** and might in fact be implemented using common code, but for now it has a separate name. It might anyway be easier for developers to understand if this distinction were to be kept, regardless of how it is implemented.
+
+It will probably need similar control options as those outlined for the **IUXRevealContainer**, but will have a distinct appearance appropriate for a higher level stage.
+
 ### Related UI Techniques
 
 The above ideas aren't new, but I think are more ambitious in my conception than
