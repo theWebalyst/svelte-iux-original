@@ -97,6 +97,39 @@ simply adding to a homogenous controls area.
 
 I welcome discussion and comment on any aspect of iUX, so feel free to open an issue for that, or to ask a question etc.
 
+As if by magic I've been introduced to the term "progressive disclosure" and a quick search reveals a few examples (below). 
+
+- Mega Menus
+- Overlays and Popovers
+- Hover Controls
+- Sliders and Carousels
+- The Hamburger Menu
+- The Read More link
+- Pagination
+- Accordian Elements
+
+On first examining examples of the above I was underwhelmed, which at least means there's plenty of scope to improve things in this area. This of course doesn't mean I can do any better :-). If you want to see for yourself what the above refer to, see "Sources" (below) which include examples of each.
+
+Some of these are even pet hates of mine! Mega Menus for example get in my way until I learn to discard my preferred way of moving the mouse and conform to something which is being imposed.
+
+I think there's an issue not with the technology here, but the motives of those
+for whom it is being deployed, and the metrics which they choose to optimise.
+Much of the badness in online UX is actually an attempt to control and direct
+users for the benefit of service providers, rather than empower and inspire the
+user for their own benefit. For example, in the sources I used for the above I
+notice that *progressive disclosure* design principles implore developers to
+provide the user with information as needed, while the execution is, in my
+day-to-day experience designed to push or funnel my activity for the benefit of
+a service provider.
+
+This is known as a "dark pattern". Today I saw *frictionless UI* being labelled as a dark pattern ([Frictionless is antithetical to autonomy](https://mobile.twitter.com/i/status/1262881162839699456), 22 May, 2020), and was given pause because I think frictionless UI is a quality I'm striving for in iUX!
+
+The issue though is not with the technology (progressive disclosure or frictionless UI), but with the incentives of those using it and the choices they make when implementing it. Phew!
+
+Sources for the "progressive disclosure" techniques listed above:
+- *Use Progressive Disclosure to Simplify Complexity*, by Jeff Dance ([May 2017](https://www.freshconsulting.com/uiux-principle-51-progressive-disclosure-hides-complexity/))
+- *The art of progressive disclosure in web design,* by Waldo Broodryk ([August, 2016](https://webflow.com/blog/the-art-of-progressive-disclosure-in-web-design))
+
 ## Using Svench
 
 Svench is at this time still a proof of concept and so subject to change, but
