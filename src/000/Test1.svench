@@ -1,9 +1,0 @@
-<script>
-import { View } from 'svench';
-
-import Test1 from './Test1.svelte';
-</script>
-
-<View name="default">
-  <Test1/>
-</View>

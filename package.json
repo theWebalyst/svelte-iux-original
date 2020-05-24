@@ -15,39 +15,25 @@
   "author": "theWebalyst",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "clean": "rm -r public/build public/svench",
     "build": "rollup -c",
-    "svench": "SVENCH=1 rollup -w --config rollup.config.svelte-template-split.js",
-    "svench:iife": "SVENCH=1 rollup -w --config rollup.config.svelte-template.js",
-    "svench:single": "SVENCH=1 rollup -w --config rollup.config.single-build.js",
-    "svench:livereload": "routify --extensions svench,svench.svx --pages src --child-process='svench:start:livereload'",
-    "svench:start": "SVENCH=1 rollup -c -w",
-    "svench:start:livereload": "SVENCH=1 LIVERELOAD=1 rollup -c -w",
-    "dev:rollup": "rollup -c -w",
-    "dev:livereload": "cross-env LIVERELOAD=1 rollup -c -w",
-    "dev": "echo; echo '(!) For this demo, you probably want to run yarn svench (run yarn dev:yes, if really...)'; echo",
-    "dev:yes": "npm run dev:rollup",
-    "start": "sirv public"
+    "prepublishOnly": "npm run build",
+    "svench": "cross-env SVENCH=1 rollup -cw",
+    "dev": "npm run --silent svench"
   },
-  "dependencies": {
-    "sirv-cli": "^0.4.4"
-  },
-
   "devDependencies": {
-    "@rixo/eslint-config-svelte": "^0.8.1",
-    "@rollup/plugin-commonjs": "11.0.2",
-    "@rollup/plugin-node-resolve": "^7.1.1",
-    "cross-env": "^6.0.3",
+    "@rollup/plugin-node-resolve": "^6.0.0",
+    "cross-env": "^7.0.2",
     "mdsvex": "^0.5.1-beta.3",
-    "nollup": "^0.10.6",
-    "rollup": "^2.7.2",
-    "rollup-plugin-hot": "^0.0.20",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-postcss": "^2.8.1",
-    "rollup-plugin-svelte-hot": "^0.6.2",
-    "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.20.1",
-    "svench": "^0.0.3",
-    "zorax": "^0.0.8"
-  }
+    "rehype-add-classes": "^1.0.0",
+    "rollup": "^1.20.0",
+    "rollup-plugin-hot": "^0.0.22",
+    "rollup-plugin-postcss-hot": "^0.0.1",
+    "rollup-plugin-svelte-hot": "^0.7.0",
+    "svelte": "^3.22.0",
+    "svench": "^0.0.8"
+  },
+  "files": [
+    "src",
+    "dist"
+  ]
 }

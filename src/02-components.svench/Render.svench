@@ -1,5 +1,0 @@
-<script>
-  import { View } from 'svench'
-</script>
-
-<View name="example">Let's render.</View>

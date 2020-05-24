@@ -1,40 +1,46 @@
 import svelte from 'rollup-plugin-svelte-hot'
 import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import livereload from 'rollup-plugin-livereload'
-import { terser } from 'rollup-plugin-terser'
+import pkg from './package.json'
 import hmr from 'rollup-plugin-hot'
+import postcss from 'rollup-plugin-postcss-hot'
 import { mdsvex } from 'mdsvex'
 import svench from 'svench/rollup'
+import addClasses from 'rehype-add-classes'
 
-const watch = !!process.env.ROLLUP_WATCH
-const useLiveReload = !!process.env.LIVERELOAD
+const name = pkg.name
+  .replace(/^(@\S+\/)?(svelte-)?(\S+)/, '$3')
+  .replace(/^\w/, m => m.toUpperCase())
+  .replace(/-\w/g, m => m[1].toUpperCase())
 
-const dev = watch || useLiveReload
-const production = !dev
-
-const hot = watch && !useLiveReload
-const isSvench = !!process.env.SVENCH
-
-const spa = true
+const WATCH = !!process.env.ROLLUP_WATCH
+const SVENCH = !!process.env.SVENCH
+const HOT = WATCH
+const PRODUCTION = !WATCH
 
 const preprocess = [
   mdsvex({
     extension: '.svx',
+		rehypePlugins: [
+			[addClasses, {
+				'*': 'svench-content-md'
+			}]
+		]
   }),
 ]
 
 export default {
-  input: 'src/main.js',
-
-  output: {
-    sourcemap: true,
-    format: 'iife',
-    file: 'public/build/bundle.js',
-    name: 'app',
-  },
-
+  input: 'src/index.js',
+  // Svench plugin will override output when enabled (and we can't let Rollup
+  // see multiple outputs array, or it will start multiple Svench server)
+  output: SVENCH
+    ? {}
+    : [
+        { file: pkg.module, format: 'es' },
+        { file: pkg.main, format: 'umd', name },
+      ],
   plugins: [
+		postcss(),
+
     svench({
       // The root dir that Svench will parse and watch.
       dir: './src',
@@ -48,7 +54,8 @@ export default {
       // Example: code splitting with ES modules
       override: {
         // replace your entry with Svench's one
-        input: true,
+        // using a custom entrypoint to include our global CSS
+        input: '.svench/svench.js',
         output: {
           // change output format to ES module
           format: 'es',
@@ -59,17 +66,6 @@ export default {
         },
       },
 
-      index: {
-        source: 'public/index.html',
-        // NOTE we need to add type="module" to use script in ES format
-        replace: {
-          '<script defer src="/build/bundle.js">':
-            '<script defer type="module" src="/svench/svench.js">',
-          'Svelte app': 'Svench app',
-        },
-        write: 'public/svench.html',
-      },
-
       serve: {
         host: '0.0.0.0',
         port: 4242,
@@ -78,58 +74,24 @@ export default {
     }),
 
     svelte({
-      dev: !production,
+      dev: !PRODUCTION,
       css: css => {
-        css.write('public/build/bundle.css')
+        css.write('dist/bundle.css')
       },
-      extensions: ['.svelte', '.svench', '.svx', '.svhx'],
+      extensions: ['.svelte', '.svench', '.svx'],
       preprocess,
-      hot: hot && {
+      hot: HOT && {
         optimistic: true,
         noPreserveState: false,
       },
     }),
 
-    resolve({
-      browser: true,
-      dedupe: ['svelte'],
-    }),
-    commonjs(),
-
-    // NOTE with this config, we're using separate rollup processes
-    !isSvench && dev && serve(),
-
-    useLiveReload && livereload('public'),
-
-    production && terser(),
+    resolve(),
 
     hmr({
       public: 'public',
       inMemory: true,
-      compatModuleHot: !hot,
+      compatModuleHot: !HOT, // for terser
     }),
   ],
-  watch: {
-    clearScreen: false,
-  },
-}
-
-function serve() {
-  let started = false
-  return {
-    name: 'svelte/template:serve',
-    writeBundle() {
-      if (!started) {
-        started = true
-        const flags = ['run', 'start', '--', '--dev']
-        if (spa) {
-          flags.push('--single')
-        }
-        require('child_process').spawn('npm', flags, {
-          stdio: ['ignore', 'inherit', 'inherit'],
-          shell: true,
-        })
-      }
-    },
-  }
 }

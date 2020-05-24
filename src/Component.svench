@@ -1,13 +1,8 @@
 <script>
   import { View } from 'svench'
+  import Component from './Component.svelte'
 </script>
 
 <View name="default">
-  <div>Default view</div>
+  <Component />
 </View>
-
-<style>
-  div {
-    height: 200px;
-  }
-</style>
